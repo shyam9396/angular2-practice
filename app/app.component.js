@@ -1,4 +1,4 @@
-System.register(['angular2/core', './coursesComponent/corses.component', './authorComponent/author.component', './favoriteComponent/favorite.component'], function(exports_1, context_1) {
+System.register(['angular2/core', './coursesComponent/corses.component', './authorComponent/author.component', './favoriteComponent/favorite.component', './likesComponent/likes.component'], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(['angular2/core', './coursesComponent/corses.component', './auth
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, corses_component_1, author_component_1, favorite_component_1;
+    var core_1, corses_component_1, author_component_1, favorite_component_1, likes_component_1;
     var AppComponent;
     return {
         setters:[
@@ -25,6 +25,9 @@ System.register(['angular2/core', './coursesComponent/corses.component', './auth
             },
             function (favorite_component_1_1) {
                 favorite_component_1 = favorite_component_1_1;
+            },
+            function (likes_component_1_1) {
+                likes_component_1 = likes_component_1_1;
             }],
         execute: function() {
             AppComponent = (function () {
@@ -33,12 +36,19 @@ System.register(['angular2/core', './coursesComponent/corses.component', './auth
                         title: "Title",
                         isFavorite: true
                     };
+                    this.tweet = {
+                        totalLikes: 10,
+                        likeStatus: false
+                    };
                 }
+                AppComponent.prototype.onFavoriteChange = function ($event) {
+                    console.log($event);
+                };
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "<h1>Hello Angular</h1>\n                <courses></courses>\n                <author></author>\n                <favorite [isFavorite]=\"post.title \"></favorite>\n                ",
-                        directives: [corses_component_1.coursesComponent, author_component_1.authorsComponent, favorite_component_1.favoriteComponent]
+                        template: "<!-- <h1>Hello Angular</h1>\n                <favorite \n                    [isFavorite]=\"post.title\"\n                    (change)=\"onFavoriteChange($event)\">\n                </favorite>\n                <courses></courses>\n                <author></author> -->\n                <likes [totalLikes]='tweet.totalLikes' [likeStatus]='tweet.likeStatus'></likes>\n                ",
+                        directives: [corses_component_1.coursesComponent, author_component_1.authorsComponent, favorite_component_1.favoriteComponent, likes_component_1.likesComponent]
                     }), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);

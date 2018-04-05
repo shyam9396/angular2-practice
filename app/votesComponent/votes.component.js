@@ -11,41 +11,28 @@ System.register(['angular2/core'], function(exports_1, context_1) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
     var core_1;
-    var favoriteComponent;
+    var votesComponent;
     return {
         setters:[
             function (core_1_1) {
                 core_1 = core_1_1;
             }],
         execute: function() {
-            favoriteComponent = (function () {
-                function favoriteComponent() {
-                    this.isFavorite = false;
-                    this.change = new core_1.EventEmitter();
+            votesComponent = (function () {
+                function votesComponent() {
                 }
-                favoriteComponent.prototype.starEve = function () {
-                    this.isFavorite = !this.isFavorite;
-                    this.change.emit({ newValue: this.isFavorite });
-                };
-                __decorate([
-                    core_1.Input(), 
-                    __metadata('design:type', Object)
-                ], favoriteComponent.prototype, "isFavorite", void 0);
-                __decorate([
-                    core_1.Output(), 
-                    __metadata('design:type', Object)
-                ], favoriteComponent.prototype, "change", void 0);
-                favoriteComponent = __decorate([
+                votesComponent = __decorate([
                     core_1.Component({
-                        selector: 'favorite',
-                        templateUrl: "app/favoriteComponent/favorite.template.html"
+                        selector: 'votes',
+                        template: "\n            <div class=\"votes\">\n                <i></i>\n                <span>{{}}</span>\n                <i></i>\n            </div>\n    ",
+                        styles: []
                     }), 
                     __metadata('design:paramtypes', [])
-                ], favoriteComponent);
-                return favoriteComponent;
+                ], votesComponent);
+                return votesComponent;
             }());
-            exports_1("favoriteComponent", favoriteComponent);
+            exports_1("votesComponent", votesComponent);
         }
     }
 });
-//# sourceMappingURL=favorite.component.js.map
+//# sourceMappingURL=votes.component.js.map
