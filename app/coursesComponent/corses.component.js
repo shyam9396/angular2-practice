@@ -26,21 +26,17 @@ System.register(['angular2/core', './courses.service', '../autoGrowDirective/aut
         execute: function() {
             coursesComponent = (function () {
                 function coursesComponent(coursesService) {
-                    this.toggleStar = false;
                     this.isActive = true;
                     this.title = "Courses";
                     this.courses = coursesService.getCourses();
                 }
-                coursesComponent.prototype.starEve = function () {
-                    this.toggleStar = !this.toggleStar;
-                };
                 coursesComponent.prototype.onClick = function ($event) {
                     console.log("Clicked", $event);
                 };
                 coursesComponent = __decorate([
                     core_1.Component({
                         selector: 'courses',
-                        template: "\n                <h4>{{title}}</h4>\n                <input type=\"text\" autoGrow />\n                <ul>\n                    <li *ngFor=\"#course of courses\">\n                        {{course}}\n                    </li>\n                </ul>\n                <button class=\"btn\" [class.active]=\"isActive\" (click)=\"onClick($event)\"> Class binding Button </button><br><br>\n                <button class=\"btn\" [style.background]=\"isActive ? 'yellow' : 'red'\"> Style binding Button </button><br><br>\n                <button class=\"btn\" (click)=\"starEve()\">\n                    <i class=\"glyphicon\" \n                        [class.glyphicon-star-empty] = \"!toggleStar\"\n                        [class.glyphicon-star] = \"toggleStar\"></i>\n                </button>\n\n    ",
+                        template: "\n                <h4>{{title}}</h4>\n                <input type=\"text\" autoGrow />\n                <ul>\n                    <li *ngFor=\"#course of courses\">\n                        {{course}}\n                    </li>\n                </ul>\n                <button class=\"btn\" [class.active]=\"isActive\" (click)=\"onClick($event)\"> Class binding Button </button><br><br>\n                <button class=\"btn\" [style.background]=\"isActive ? 'yellow' : 'red'\"> Style binding Button </button><br><br>\n\n    ",
                         providers: [courses_service_1.CoursesService],
                         directives: [autoGrow_directive_1.AutoGrowDirective]
                     }), 

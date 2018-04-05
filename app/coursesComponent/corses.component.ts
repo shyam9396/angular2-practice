@@ -1,6 +1,6 @@
 import {Component, Directive} from 'angular2/core';
 import {CoursesService} from './courses.service';
-import {AutoGrowDirective} from '../autoGrowDirective/autoGrow.directive'
+import {AutoGrowDirective} from '../autoGrowDirective/autoGrow.directive';
 
 @Component({
     selector:'courses',
@@ -14,11 +14,6 @@ import {AutoGrowDirective} from '../autoGrowDirective/autoGrow.directive'
                 </ul>
                 <button class="btn" [class.active]="isActive" (click)="onClick($event)"> Class binding Button </button><br><br>
                 <button class="btn" [style.background]="isActive ? 'yellow' : 'red'"> Style binding Button </button><br><br>
-                <button class="btn" (click)="starEve()">
-                    <i class="glyphicon" 
-                        [class.glyphicon-star-empty] = "!toggleStar"
-                        [class.glyphicon-star] = "toggleStar"></i>
-                </button>
 
     `,
     providers:[CoursesService],
@@ -26,15 +21,11 @@ import {AutoGrowDirective} from '../autoGrowDirective/autoGrow.directive'
 })
 
 export class coursesComponent{
-    toggleStar = false;
+    
     isActive = true;
     title = "Courses" 
     courses;
-
-    starEve(){
-        this.toggleStar = !this.toggleStar;
-    }
-
+    
     constructor(coursesService : CoursesService){
         this.courses = coursesService.getCourses();
     }
