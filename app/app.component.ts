@@ -2,7 +2,11 @@ import {Component} from 'angular2/core';
 import {coursesComponent} from './coursesComponent/corses.component';
 import {authorsComponent} from './authorComponent/author.component';
 import {favoriteComponent} from './favoriteComponent/favorite.component';
-import {likesComponent} from './likesComponent/likes.component'
+import {likesComponent} from './likesComponent/likes.component';
+import {votesComponent} from './votesComponent/votes.component';
+import {TweetsComponent} from './tweetsComponent/tweets.component';
+import {TweetComponent} from './tweetsComponent/tweet.component';
+import {TweetService} from './tweetsComponent/tweets.service';
 
 @Component({
     selector: 'my-app',
@@ -12,24 +16,39 @@ import {likesComponent} from './likesComponent/likes.component'
                     (change)="onFavoriteChange($event)">
                 </favorite>
                 <courses></courses>
-                <author></author> -->
+                <author></author>
                 <likes [totalLikes]='tweet.totalLikes' [likeStatus]='tweet.likeStatus'></likes>
+                <votes [voteCount]="votes.voteCount" [myVote]="votes.myVote" (vote)="onVotes($event)" ></votes>-->
+                <div *ngFor="#tweet of tweets">
+                    <tweet [data]="tweet"></tweet>
+                </div>
+                
                 `,
-    directives:[coursesComponent, authorsComponent, favoriteComponent, likesComponent]
+    providers: [TweetService],
+    directives:[coursesComponent, authorsComponent, favoriteComponent, likesComponent, votesComponent, TweetsComponent, TweetComponent]
 })
 export class AppComponent { 
 
-    post = {
+  /*  post = {
         title : "Title",
         isFavorite : true
     }
     onFavoriteChange($event){
         console.log($event);
-    }
+    }   
 
-    tweet = {
-        totalLikes : 10,
-        likeStatus : false        
+    votes ={
+        voteCount : 10,
+        myVote:0
+    }
+    onVotes($event){
+        console.log($event);
+    }*/
+	
+    tweets: any[];
+    
+    constructor(tweetService: TweetService){
+        this.tweets = tweetService.getTweets();
     }
 
 }

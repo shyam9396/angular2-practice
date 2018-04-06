@@ -20,12 +20,41 @@ System.register(['angular2/core'], function(exports_1, context_1) {
         execute: function() {
             votesComponent = (function () {
                 function votesComponent() {
+                    this.voteCount = 0;
+                    this.myVote = 0;
+                    this.vote = new core_1.EventEmitter();
                 }
+                votesComponent.prototype.voteUp = function () {
+                    if (this.myVote == 1) {
+                        return;
+                    }
+                    this.myVote++;
+                    this.vote.emit({ myVote: this.myVote });
+                };
+                votesComponent.prototype.voteDown = function () {
+                    if (this.myVote == -1) {
+                        return;
+                    }
+                    this.myVote--;
+                    this.vote.emit({ myVote: this.myVote });
+                };
+                __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', Object)
+                ], votesComponent.prototype, "voteCount", void 0);
+                __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', Object)
+                ], votesComponent.prototype, "myVote", void 0);
+                __decorate([
+                    core_1.Output(), 
+                    __metadata('design:type', Object)
+                ], votesComponent.prototype, "vote", void 0);
                 votesComponent = __decorate([
                     core_1.Component({
                         selector: 'votes',
-                        template: "\n            <div class=\"votes\">\n                <i></i>\n                <span>{{}}</span>\n                <i></i>\n            </div>\n    ",
-                        styles: []
+                        template: "\n            <div class=\"votes\">\n                <span (click)=\"voteUp()\"><button><i class=\"glyphicon glyphicon-menu-up\" [class.voted]=\"myVote == 1\"></i></button></span>\n                <span>{{voteCount + myVote}}</span>\n                <span (click)=\"voteDown()\"><button><i class=\"glyphicon glyphicon-menu-down\" [class.voted]=\"myVote == -1\"></i></button></span>\n            </div>\n    ",
+                        styles: ["\n        .votes{width:36px;display:block;margin:50px auto;}\n        .votes span{display:block;text-align:center;font-size:24px;height:auto;overflow:hidden;}\n        .votes span > button{display:block;background:transparent;border:none;}\n        .votes span > button > i.voted{color:yellow}\n    "]
                     }), 
                     __metadata('design:paramtypes', [])
                 ], votesComponent);
